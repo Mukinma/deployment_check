@@ -1,0 +1,4 @@
+[24-May-2025 16:07:59 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function shell_exec() in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/deploy.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/deploy.php on line 3

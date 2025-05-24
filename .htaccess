@@ -1,0 +1,94 @@
+# Habilitar la reescritura de URL
+RewriteEngine On
+RewriteBase /
+
+# Configuración PHP para subida de archivos
+php_value upload_max_filesize 20M
+php_value post_max_size 22M
+php_value max_execution_time 300
+php_value max_input_time 300
+php_value memory_limit 256M
+php_value max_file_uploads 20
+
+# Habilitar registro de errores 
+php_flag log_errors on
+php_value error_log logs/php_errors.log
+
+# Configuración de subida de archivos
+<IfModule mod_security.c>
+    # Desactivar mod_security para subidas de archivos
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>
+
+# Directorio de caché del navegador
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/x-javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Configuración de compresión GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/xml
+</IfModule>
+
+# Zona horaria
+php_value date.timezone "America/Mexico_City"
+
+# Aumentar el tiempo de ejecución para scripts
+php_value max_execution_time 300
+
+# Configuración de codificación
+AddDefaultCharset UTF-8
+
+# Habilitar HTTPS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redireccionar a HTTPS si no está activado
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+    
+    # Reglas URL amigables para la navegación
+    RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Prevenir acceso a archivos sensibles
+<FilesMatch "^(\.htaccess|\.htpasswd|\.git|\.env|config\.php|db\.php)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Establecer tipo MIME para webfonts
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
+AddType application/x-font-ttf .ttf
+AddType application/x-font-otf .otf
+AddType application/font-sfnt .sfnt 
+
+# log PHP errors to a file
+php_flag log_errors on
+php_value error_reporting 32767
+php_value error_log "error_log.txt"
+php_flag display_errors on php_value error_reporting 32767 

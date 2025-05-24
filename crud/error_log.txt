@@ -1,0 +1,19 @@
+[23-May-2025 14:10:27 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/connection.php:10
+Stack trace:
+#0 /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/connection.php(10): mysqli_connect()
+#1 /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/indexCrud.php(3): connection()
+#2 {main}
+  thrown in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/connection.php on line 10
+[23-May-2025 14:11:46 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/connection.php:10
+Stack trace:
+#0 /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/connection.php(10): mysqli_connect()
+#1 /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/indexCrud.php(3): connection()
+#2 {main}
+  thrown in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/connection.php on line 10
+[23-May-2025 15:06:01 America/Mexico_City] PHP Warning:  move_uploaded_file(uploads/img6.jpg): Failed to open stream: No such file or directory in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 18
+[23-May-2025 15:06:01 America/Mexico_City] PHP Warning:  move_uploaded_file(): Unable to move &quot;/tmp/phpNDN4yS&quot; to &quot;uploads/img6.jpg&quot; in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 18
+[24-May-2025 12:54:34 America/Mexico_City] PHP Warning:  move_uploaded_file(uploads/saludDerecho.jpg): Failed to open stream: No such file or directory in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 18
+[24-May-2025 12:54:34 America/Mexico_City] PHP Warning:  move_uploaded_file(): Unable to move &quot;/tmp/phpzbT6ro&quot; to &quot;uploads/saludDerecho.jpg&quot; in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 18
+[24-May-2025 13:40:54 America/Mexico_City] PHP Warning:  Undefined array key "imagen_actual" in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 23
+[24-May-2025 13:44:09 America/Mexico_City] PHP Warning:  move_uploaded_file(uploads/saludDerecho.jpg): Failed to open stream: No such file or directory in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 18
+[24-May-2025 13:44:09 America/Mexico_City] PHP Warning:  move_uploaded_file(): Unable to move &quot;/tmp/phpy41LRc&quot; to &quot;uploads/saludDerecho.jpg&quot; in /home/u978931113/domains/mediumslateblue-hornet-501370.hostingersite.com/public_html/crud/edit_publicacion.php on line 18

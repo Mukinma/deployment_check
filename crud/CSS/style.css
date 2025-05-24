@@ -1,0 +1,731 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-50%, -60%); }
+}
+
+.popup-bienvenida {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #acea9b;
+    padding: 50px 80px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(160, 231, 168, 0.5); /* sombra más intensa */
+    z-index: 1000;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: #333;
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #ffffff;
+    box-shadow: 0 4px 25px -22px black; /* Sombra del header */
+    z-index: 2; /* Asegura que esté por encima de otros elementos */
+  }
+
+  .menu-tips {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .menu-tips .logo-ods img {
+    display: inline-flex;
+    height: 90px;
+    margin-top: 10px;
+    margin-right: 0px;
+  }
+  
+  .menu-tips a b {
+    color: #298d0e; /* Color del texto en negrita */
+  }
+  
+  .menu-tips a {
+    color: #201f1f; /* Color del texto */
+  }
+  
+  .menu-tips nav {
+    height: 100%;
+  }
+  
+  .menu-tips nav ul {
+    height: 100%;
+    display: flex;
+    list-style: none;
+    margin-left: 620px;
+  }
+  
+  .menu-tips nav ul li {
+    height: 100%;
+    margin: 0% 20px; /* Margen horizontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .menu-tips nav ul li a {
+    color: #201f1f; /* Color del texto del menú */
+  }
+  
+  .menu-tips nav ul li a:hover {
+    color: #298d0e; /* Color al pasar el cursor */
+    transition: color 300ms;
+  }
+
+  @media (max-width: 768px) {
+    .contenido-header {
+      padding: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .menu-tips {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      height: auto;
+    }
+  
+    .menu-tips .logo-ods img {
+      height: 60px;
+      margin-top: 5px;
+      
+    }
+  
+    .menu-tips h1 {
+      font-size: 18px;
+    }
+  
+    .menu-tips nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  
+    .menu-tips nav ul li a {
+      font-size: 12px;
+      padding: 4px 6px;
+    }
+  }
+
+  body {
+    padding-top: 100px; /* deja espacio para el header */
+}
+
+.formulario {
+    margin: 20px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #cae3c8, #dadcde); /* Degradado de fondo suave */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Sombra más intensa */
+    width: 90%;
+    max-width: 600px; /* Ancho máximo */
+}
+
+.formulario h1 {
+    text-align: center;
+    color: #08290d; /* Color del título */
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 28px; /* Tamaño de fuente grande */
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre los campos */
+}
+
+.formulario form input,
+.formulario form textarea {
+    padding: 15px; /* Espaciado interno */
+    border: 2px solid #298d0e; /* Borde verde */
+    border-radius: 8px; /* Bordes redondeados */
+    outline: none; /* Sin contorno al enfocar */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    font-size: 16px; /* Tamaño de fuente */
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+}
+
+.formulario form input:focus,
+.formulario form textarea:focus {
+    border-color: #60a100; /* Borde más claro al enfocar */
+    box-shadow: 0 0 8px rgba(96, 161, 0, 0.5); /* Sombra al enfocar */
+}
+
+.formulario form input[type=submit] {
+    border: none; /* Sin borde */
+    padding: 15px; /* Espaciado interno */
+    background-color: #298d0e; /* Color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-weight: bold; /* Texto en negrita */
+    font-size: 18px; /* Tamaño de fuente */
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+}
+
+.formulario form input[type=submit]:hover {
+    background-color: #60a100; /* Color al pasar el cursor */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.formulario form input[type=file] {
+    border: none; /* Sin borde */
+    padding: 10px; /* Espaciado interno */
+    background-color: #e7f9e7; /* Fondo suave */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.formulario form input[type=file]:hover {
+    background-color: #d0f0d0; /* Color al pasar el cursor */
+}
+
+
+.publicaciones-table {
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+.publicaciones-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden; /* Asegura que los bordes redondeados se mantengan */
+}
+
+.publicaciones-table th,
+.publicaciones-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.publicaciones-table th {
+    background-color: #dbdbdb; /* Fondo verde */
+    color: rgb(0, 0, 0); /* Color del texto */
+    font-weight: bold;
+}
+
+.publicaciones-table tr {
+    background-color: #f9f9f9; /* Color de fondo por defecto */
+}
+
+.publicaciones-table tr:hover {
+    background-color: #e2f0e5; /* Color al pasar el cursor sobre la fila */
+}
+
+.publicaciones-table--edit,
+.publicaciones-table--delete {
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.publicaciones-table--edit {
+    background-color: #6a9c6a; /* Color verde */
+}
+
+.publicaciones-table--delete {
+    background-color: #b11e1e; /* Color rojo */
+}
+
+.imagen-publicacion {
+    width: 50px; /* Ajustar el tamaño de la imagen */
+    height: auto; /* Mantiene la relación de aspecto */
+    border-radius: 4px; /* Bordes redondeados para las imágenes */
+}
+
+
+.container-footer {
+    width: 100%;
+    padding: 40px 0;
+    background: #298d0e; /* Fondo verde translúcido */
+    margin-top: 40px;
+}
+
+.container-footer footer {
+    max-width: 1200px;
+    margin: auto; /* Centra el contenido */
+}
+
+.container-footer footer .logo-footer {
+    text-align: center;
+}
+
+.container-footer footer .logo-footer img {
+    width: 100px; /* Tamaño del logo */
+}
+
+.container-footer footer .redes-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container-footer footer .redes-footer .icon-redes-footer {
+    font-size: 20px;
+    margin: 20px;
+    background: #b2afaf; /* Fondo gris claro */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%; /* Forma circular */
+    color: #646363; /* Color del icono */
+}
+
+.container-footer footer .redes-footer .fa-facebook:hover {
+    background: #41479a; /* Fondo azul de Facebook */
+    color: #fff; /* Color blanco */
+}
+
+.container-footer footer .redes-footer .fa-instagram:hover {
+    background: linear-gradient(to top right, #fcde30, #e9712a, #d2313b, #ae4198, #7546a1, #5443A6); /* Degradado de Instagram */
+    color: #fff; /* Color blanco */
+}
+
+.container-footer footer .redes-footer .fa-twitter:hover {
+    background: #1DA1F2; /* Fondo azul de Twitter */
+    color: #fff; /* Color blanco */
+}
+
+.container-footer footer hr {
+    margin-top: 20px;
+    border: none;
+    height: 2px;
+    background: #c0c0c07a; /* Línea gris translúcida */
+}
+.container-footer h4 {
+    text-align: center;
+    margin-top: 70px;
+    color: #424242; /* Color gris oscuro */
+    font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .formulario form {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .publicaciones-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .publicaciones-table th, 
+  .publicaciones-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .menu-tips nav ul {
+    margin-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .container-footer footer .redes-footer {
+    flex-wrap: wrap;
+  }
+
+  .popup-bienvenida {
+    width: 90%;
+    padding: 30px;
+    font-size: 20px;
+  }
+}
+
+/* Modal para ver publicación */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fffbea;
+  margin: 10% auto;
+  padding: 30px;
+  border: 2px solid #a2c72c;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 700px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close {
+  color: #b11e1e;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ff0000;
+}
+
+/* Contenido de la publicación en el modal */
+#modal-content h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #298d0e;
+}
+
+#modal-content p {
+  margin: 10px 0;
+  color: #444;
+}
+/* Asegura que las imágenes en el modal tengan un tamaño adecuado */
+#modal-content img {
+  max-width: 50%;   /* Ajusta la imagen para que no se exceda del 80% del ancho del modal */
+  height: auto;     /* Mantiene la relación de aspecto de la imagen */
+  margin-top: 20px; /* Añade un poco de espacio arriba de la imagen */
+  display: block;   /* Asegura que la imagen esté en bloque, sin texto flotante */
+  margin-left: auto; /* Centra la imagen */
+  margin-right: auto; /* Centra la imagen */
+}
+
+.ver-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.ver-btn:hover {
+    background-color: #45a049;
+}
+.crear-publicacion-btn {
+    padding: 20px 40px; /* Espaciado interno */
+    font-size: 24px; /* Tamaño de fuente */
+    color: white; /* Color del texto */
+    background-color: #298d0e; /* Color de fondo */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+    margin: 20px 0; /* Margen vertical */
+}
+
+.crear-publicacion-btn:hover {
+    background-color: #60a100; /* Color al pasar el cursor */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.oculto {
+    display: none; /* Clase para ocultar elementos */
+}
+.regresar-btn {
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 18px; /* Tamaño de fuente */
+    color: white; /* Color del texto */
+    background-color: #298d0e; /* Color de fondo */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s; /* Transición suave */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+.regresar-btn:hover {
+    background-color: #60a100; /* Color al pasar el cursor */
+}
+.mensaje-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+/* NUEVAS ANIMACIONES */
+@keyframes bounceIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #298d0e; }
+  50% { box-shadow: 0 0 20px #60a100; }
+  100% { box-shadow: 0 0 5px #298d0e; }
+}
+
+/* Aplicación de animaciones */
+header {
+  animation: slideInLeft 1s ease;
+}
+
+.formulario {
+  animation: bounceIn 1.2s ease;
+}
+
+.formulario h1 {
+  animation: slideUp 1s ease;
+}
+
+.formulario form input[type=submit] {
+  animation: pulse 2s infinite;
+}
+
+.menu-tips nav ul li a:hover {
+  animation: pulse 0.5s ease;
+}
+
+.publicaciones-table {
+  animation: fadeIn 1s ease;
+}
+
+.publicaciones-table tr:hover {
+  animation: glow 1.5s infinite alternate;
+}
+
+.crear-publicacion-btn {
+  animation: bounceIn 1.2s ease;
+}
+
+.crear-publicacion-btn:hover {
+  animation: shake 0.4s ease-in-out;
+}
+
+.ver-btn {
+  animation: slideUp 1.2s ease;
+}
+
+.ver-btn:hover {
+  animation: glow 1.2s infinite alternate;
+}
+
+.regresar-btn {
+  animation: fadeIn 1s ease;
+}
+
+.regresar-btn:hover {
+  animation: pulse 0.8s infinite;
+}
+
+.popup-bienvenida {
+  animation: fadeIn 1s ease forwards;
+}
+
+.container-footer {
+  animation: slideUp 2s ease;
+}
+
+.container-footer footer .icon-redes-footer:hover {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+.modal-content {
+  animation: bounceIn 0.6s ease;
+}
+
+.mensaje-error {
+  animation: shake 0.5s ease;
+}
+@keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0px rgba(102, 187, 106, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(102, 187, 106, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0px rgba(102, 187, 106, 0.3);
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes bounceOnHover {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.formulario {
+    margin: 40px auto;
+    padding: 40px 30px;
+    background: linear-gradient(145deg, #e2f4dc, #f5f7f7);
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    animation: slideUpFadeIn 1s ease forwards;
+    opacity: 0;
+}
+
+.formulario h1 {
+    text-align: center;
+    color: #1b4d1b;
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom: 25px;
+    font-size: 30px;
+    animation: pulseGlow 2s infinite;
+}
+
+.formulario form input,
+.formulario form textarea {
+    width: 100%;
+    background-color: #f9fff9;
+    border: 1px solid #a5d6a7;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: wiggle 3s infinite;
+}
+
+.formulario form input:focus,
+.formulario form textarea:focus {
+    border-color: #66bb6a;
+    box-shadow: 0 0 15px rgba(102, 187, 106, 0.6);
+    transform: scale(1.02);
+    animation: pulseGlow 2s infinite;
+}
+
+.formulario form input[type=submit] {
+    background-color: #2e7d32;
+    color: #fff;
+    font-size: 18px;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    animation: bounceOnHover 2s infinite;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.formulario form input[type=submit]:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+.eliminar-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    background-color: #c0392b;
+}
+
+
+
