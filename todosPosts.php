@@ -1,6 +1,20 @@
 <?php
 session_start();
+
+include 'conexion.php';
+$con = connection();
+
+// Consulta para obtener todas las publicaciones
+$sql_all_posts = "SELECT * FROM publicaciones ORDER BY fecha DESC";
+$query_all_posts = mysqli_query($con, $sql_all_posts);
+
+if (!$query_all_posts) {
+    die("Error en la consulta: " . mysqli_error($con));
+}
+
+mysqli_close($con);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,10 +115,7 @@ session_start();
                 <a href="indexUsuario.php"><i class="fas fa-home"></i></a>
                 <span class="tooltiptext" data-es="Inicio" data-en="Home">Inicio</span>
             </li>
-            <li class="tooltip">
-    <a href="todosPosts.php"><i class="fas fa-file-alt"></i></a>
-    <span class="tooltiptext" data-es="Post" data-en="Posts">Post</span>
-</li>
+
             <li class="tooltip">
                 <a href="https://www.youtube.com/channel/UCP6DHuQs90149gArPEcevJg"><i class="fab fa-youtube"></i></a>
                 <span class="tooltiptext" data-es="Tutoriales" data-en="Tutorials">Tutoriales</span>
@@ -143,157 +154,26 @@ session_start();
 </li>
 
     </header>
-
-    <div class="container-all" id="move-content">
-        <div class="container-cover">
-            <div id="icon-menu">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </div>
-
-        <div class="post-slider">
-            <h1 class="slider-title lang-publicaciones">Publicaciones Recientes</h1>
-            <i class="fas fa-chevron-left prev"></i>
-            <i class="fas fa-chevron-right next"></i>
-
-            <div class="post-wrapper">
-                <?php
-                // Consulta para obtener las publicaciones
-                include 'conexion.php'; // Asegúrate de que este archivo contenga la función connection()
-                $con = connection(); // Llama a la función de conexión
-
-                // Consulta SQL para obtener las últimas 5 publicaciones
-                $sql = "SELECT * FROM publicaciones ORDER BY fecha DESC LIMIT 5"; 
-                $query = mysqli_query($con, $sql);
-
-                // Verificar si la consulta fue exitosa
-                if (!$query) {
-                    die("Error en la consulta: " . mysqli_error($con));
-                }
-
-                // Procesar los resultados
-                if (mysqli_num_rows($query) > 0) {
-                    while ($fila = mysqli_fetch_assoc($query)) {
-                        echo '<div class="post">';
-                        echo '<img src="../imagenWeb/' . htmlspecialchars($fila['imagen']) . '" alt="" class="slider-image">';
-                        echo '<div class="post-info">';
-                        echo '<h4><a href="detalle_publicacion.php?id=' . $fila['publicacion'] . '">' . htmlspecialchars($fila['titulo']) . '</a></h4>';         
-echo '<div class="post-meta">';
-echo '<span><i class="fas fa-user"></i>' . htmlspecialchars($fila['autor']) . '</span>';
-echo '<span><i class="fas fa-calendar-alt"></i>' . htmlspecialchars($fila['fecha']) . '</span>';
-echo '</div>';
-
-
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "No hay publicaciones disponibles.";
-                }
-
-                // Cierra la conexión al final
-                mysqli_close($con);
-                ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-conten">
-        <div class="Big-post">
-            <h1 class="lang-pasoTitulo">Pasos para una alimentación saludable</h1>
-        </div>
-        <article>
-            <div class="contenido">
-                <nav>
-                    <ul>
-                        <h1 class="lang-pasoTitulo">Pasos para una alimentación saludable</h1>
-
-                        <li><a href="#"><i class="fas fa-calendar-alt"></i></a> <span class="lang-paso1">Planificas tus comidas</span></li>
-                        <p class="lang-paso1desc">Organiza tus comidas saludables para asegurar una dieta balanceada</p>
-
-                        <li><a href="#"><i class="fas fa-apple-alt"></i></a> <span class="lang-paso2">Incluye más frutas y verduras</span></li>
-                        <p class="lang-paso2desc">Aumenta el consumo de alimentos frescos y naturales en tu dieta diaria</p>
-
-                        <li><a href="#"><i class="fas fa-tint"></i></a> <span class="lang-paso3">Hidrátate adecuadamente</span></li>
-                        <p class="lang-paso3desc">Mantén tu cuerpo hidratado bebiendo suficiente agua a lo largo del día</p>
-                    </ul>
-                </nav>
-                <a href="post-tips.php" style="display: inline-block; padding: 10px 20px; background-color: #2c3e50; color: whitesmoke; text-decoration: none; border-radius: 5px; font-weight: bold;">
-                    <span data-es="Leer más" data-en="Read more">Leer más</span>
-                </a>
-            </div>
-
-            <img src="imagenWeb/img16.jpg" alt="">
-        </article>
-    </div>
-
-    <section id="ultimos-articulos">
-        <div class="articulo">
-            
-<div class="articulo-item">
-            <img src="post_Img/post1.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
-            <h3 data-es="¿Cómo debe de ser la dieta para deportistas?" data-en="What should a diet for athletes be like?">
-                ¿Cómo debe de ser la dieta para deportistas?
-            </h3>
-            <p data-es="La dieta para deportistas de alto rendimiento..." data-en="The diet for high-performance athletes...">
-                La dieta para deportistas de alto rendimiento...
-            </p>
-            <span>24/05/2025</span>
-            <a href="/post-Bloguero/post1.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
-        </div>
-
-        <div class="articulo-item">
-            <img src="post_Img/post2.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
-            <h3 data-es="Dieta antiinflamatoria" data-en="Anti-inflammatory Diet">
-                Dieta antiinflamatoria
-            </h3>
-            <p data-es="Elegir una dieta antiinflamatoria es clave..." data-en="Choosing an anti-inflammatory diet is key...">
-                Elegir una dieta antiinflamatoria es clave...
-            </p>
-            <span>24/05/2025</span>
-            <a href="/post-Bloguero/post2.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
-        </div>
-
-        <!-- Repite para post3.php a post6.php -->
-        <div class="articulo-item">
-            <img src="/post_Img/post1.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
-            <h3 data-es="¿Cómo debe de ser la dieta para deportistas?" data-en="What should a diet for athletes be like?">
-                ¿Cómo debe de ser la dieta para deportistas?
-            </h3>
-            <p data-es="La dieta para deportistas de alto rendimiento..." data-en="The diet for high-performance athletes...">
-                La dieta para deportistas de alto rendimiento...
-            </p>
-            <span>24/05/2025</span>
-            <a href="/post-Bloguero/post1.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
-        </div>
-
-        <div class="articulo-item">
-            <img src="/post_Img/post2.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
-            <h3 data-es="Dieta antiinflamatoria" data-en="Anti-inflammatory Diet">
-                Dieta antiinflamatoria
-            </h3>
-            <p data-es="Elegir una dieta antiinflamatoria es clave..." data-en="Choosing an anti-inflammatory diet is key...">
-                Elegir una dieta antiinflamatoria es clave...
-            </p>
-            <span>24/05/2025</span>
-            <a href="/post-Bloguero/post2.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
-        </div>
-            <div class="articulo-item">
-                <img src="post_Img/post4.jpg" alt="Salud y bienestar">
-                <h3 data-es="Smoothie de Frutas y Avena" data-en="Fruit and Oat Smoothie"></h3>
-                <p data-es="Este smoothie es una excelente manera de comenzar el…" data-en="This smoothie is an excellent way to start your…"></p>
-                <span>24/05/2025</span>
-                <a href="post-Bloguero/post4.php" data-es="Leer más" data-en="Read more"></a>
-            </div>
-            <div class="articulo-item">
-                <img src="post_Img/post5.png" alt="Salud y bienestar">
-                <h3 data-es="Ensalada con naranja, queso y pistachos" data-en="Salad with orange, cheese and pistachios"></h3>
-                <p data-es="Esta ensalada con naranja, queso de cabra y pistachos, aportan…" data-en="This salad with orange, goat cheese, and pistachios provides…"></p>
-                <span>24/05/2025</span>
-                <a href="post-Bloguero/post5.php" data-es="Leer más" data-en="Read more"></a>
-            </div>
-        </div>
-    </section>
+    <main class="posts-container">
+        <div class="grid-container">
+            <?php
+            $count = 0; // Contador para las publicaciones
+            while ($post = mysqli_fetch_assoc($query_all_posts)):
+                if ($count % 3 == 0 && $count != 0): ?>
+                    </div> <!-- Cierra el contenedor anterior cada 3 publicaciones -->
+                <?php endif; ?>
+                <div class="post-card">
+                    <a href="detalle_publicacion.php?id=<?php echo $post['publicacion']; ?>">
+                        <img src="../imagenWeb/<?php echo htmlspecialchars($post['imagen']); ?>" alt="Imagen de la publicación" class="post-image" />
+                    </a>
+                    <h2><a href="detalle_publicacion.php?id=<?php echo $post['publicacion']; ?>"><?php echo htmlspecialchars($post['titulo']); ?></a></h2>
+                    <p><strong>Autor:</strong> <?php echo htmlspecialchars($post['autor']); ?></p>
+                    <p><strong>Fecha:</strong> <?php echo htmlspecialchars($post['fecha']); ?></p>
+                </div>
+                <?php $count++; // Incrementa el contador ?>
+            <?php endwhile; ?>
+        </div> <!-- Cierra el último contenedor -->
+    </main>
 
     <script>
     // Función para cambiar textos según el idioma
@@ -430,5 +310,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
-
 

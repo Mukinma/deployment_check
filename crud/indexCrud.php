@@ -148,8 +148,11 @@ if(isset($_SESSION['lang'])) {
 </head>
 <body>
     <header>
-        <div class="contenido-heder">
             <div class="menu-tips">
+                        <div class="contenido-heder">
+            <button class="hamburger" onclick="toggleMenu()">
+  <i class="fas fa-bars"></i>
+</button>
                 <div class="logo-ods"> 
                     <img src="../imagenWeb/img9.png" alt="">
                 </div>
@@ -345,6 +348,18 @@ document.getElementById('imagen').addEventListener('change', function(e) {
     document.getElementById('file-name').textContent = fileName;
 });
     </script>
+    <script>
+function toggleMenu() {
+  const menu = document.querySelector('.menu-contenido');
+  menu.classList.toggle('nav-open');
+}
+document.querySelectorAll('.menu-contenido nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.menu-contenido').classList.remove('nav-open');
+  });
+});
+
+</script>
 
     <!-- Modal para mostrar la publicación -->
     <div id="postModal" class="modal" style="display:none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow:auto; background-color: rgba(0,0,0,0.5);">

@@ -149,6 +149,9 @@ if(isset($_SESSION['lang'])) {
 <body>
     <header>
         <div class="contenido-heder">
+                        <button class="hamburger" onclick="toggleMenu()">
+  <i class="fas fa-bars"></i>
+</button>
             <div class="menu-tips">
                 <div class="logo-ods"> 
                     <img src="../imagenWeb/img9.png" alt="">
@@ -276,6 +279,18 @@ document.getElementById('imagen').addEventListener('change', function(e) {
     document.getElementById('file-name').textContent = fileName;
 });
     </script>
+        <script>
+function toggleMenu() {
+  const menu = document.querySelector('.menu-contenido');
+  menu.classList.toggle('nav-open');
+}
+document.querySelectorAll('.menu-contenido nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.menu-contenido').classList.remove('nav-open');
+  });
+});
+
+</script>
     </div>
 </body>
 </html>

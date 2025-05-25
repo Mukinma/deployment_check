@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prueba banner cookies</title>
+<style>
+  #cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    background: #222;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    z-index: 9999;
+  }
+  #accept-cookies {
+    margin-left: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div id="cookie-banner">
+  Este sitio usa cookies para mejorar la experiencia.
+  <button id="accept-cookies">Aceptar</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+
+    // Si ya aceptó las cookies, ocultar banner
+    if (localStorage.getItem('cookiesAccepted') === 'true') {
+      cookieBanner.style.display = 'none';
+    }
+
+    // Al hacer clic en aceptar
+    acceptBtn.addEventListener('click', function () {
+      localStorage.setItem('cookiesAccepted', 'true'); // Guardar que aceptó
+      cookieBanner.style.display = 'none';             // Ocultar banner
+    });
+  });
+</script>
+
+</body>
+</html>

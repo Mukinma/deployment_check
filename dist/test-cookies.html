@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prueba Cookies</title>
+<style>
+  #cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #222;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+  }
+  #cookie-banner button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #accept-cookies {
+    background-color: #4CAF50;
+    color: white;
+  }
+  #reject-cookies {
+    background-color: #f44336;
+    color: white;
+  }
+  #reject-message {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    background: #fdd;
+    color: #900;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: none;
+    z-index: 9998;
+  }
+</style>
+</head>
+<body>
+
+<div id="cookie-banner">
+  <div>
+    <span>Aceptamos cookies para mejorar tu experiencia. </span>
+    <a href="politicas_privacidad.php" style="color: #4fc3f7; text-decoration: underline;" target="_blank">Leer políticas de privacidad</a>
+  </div>
+  <div>
+    <button id="accept-cookies">Aceptar</button>
+    <button id="reject-cookies">Rechazar</button>
+  </div>
+</div>
+
+<div id="reject-message">
+  Has rechazado las cookies. Algunas funcionalidades pueden estar limitadas.
+</div>
+
+<script>
+  // Funciones para manejar cookies
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  }
+
+  function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0; i < ca.length; i++) {
+      let c = ca[i].trim();
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const rejectMessage = document.getElementById('reject-message');
+
+    // Revisar si ya hay consentimiento
+    const cookieConsent = getCookie('cookieConsent');
+
+    if (cookieConsent === 'accepted') {
+      cookieBanner.style.display = 'none';
+      rejectMessage.style.display = 'none';
+    } else if (cookieConsent === 'rejected') {
+      cookieBanner.style.display = 'none';
+      rejectMessage.style.display = 'block';
+    } else {
+      cookieBanner.style.display = 'flex';
+      rejectMessage.style.display = 'none';
+    }
+
+    // Botones
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+      setCookie('cookieConsent', 'accepted', 365);
+      cookieBanner.style.display = 'none';
+      rejectMessage.style.display = 'none';
+    });
+
+    document.getElementById('reject-cookies').addEventListener('click', () => {
+      setCookie('cookieConsent', 'rejected', 365);
+      cookieBanner.style.display = 'none';
+      rejectMessage.style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

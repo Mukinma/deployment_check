@@ -727,5 +727,43 @@ header {
     background-color: #c0392b;
 }
 
+/* Estilos base */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  z-index: 10000;
+}
+
+.menu-contenido nav {
+  display: flex;
+  gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .menu-contenido nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 70px; /* ajusta según altura del header */
+    right: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 10px 20px;
+  }
+
+  .menu-contenido.nav-open nav {
+    display: flex;
+  }
+}
 
 

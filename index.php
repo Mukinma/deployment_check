@@ -1,7 +1,14 @@
 <?php
 session_start();
-?>
 
+if (isset($_POST['aceptar_cookies'])) {
+    $_SESSION['cookies_aceptadas'] = true;
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+$mostrarBannerCookies = !isset($_SESSION['cookies_aceptadas']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,10 +70,127 @@ session_start();
     color: #2c3e50; /* Color al pasar el mouse */
 }
 
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: #2c2c2c;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 9999;
+  animation: slideUp 0.7s ease;
+}
+
+/* Animación de aparición */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+/* Enlace a políticas */
+#cookie-banner a {
+  color: #4fc3f7;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+#cookie-banner span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+/* Botones */
+#cookie-banner button {
+  margin-left: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#accept-cookies {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#reject-cookies {
+  background-color: #f44336;
+  color: white;
+}
+
+#cookie-banner button:hover {
+  transform: scale(1.05);
+}
+
+/* Mensaje de rechazo */
+#reject-message {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fdd;
+  color: #900;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9998;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
     </style>
 </head>
 <body>
+<?php if ($mostrarBannerCookies): ?>
+<script>
+  document.getElementById('cookie-banner').style.display = 'block';
+</script>
+<?php endif; ?>
+<div id="cookie-banner">
+  <div>
+    <span data-es="Aceptamos cookies para mejorar tu experiencia."
+          data-en="We use cookies to improve your experience.">
+    </span>
+    <a href="politicas_privacidad.php" target="_blank"
+       data-es="Leer políticas de privacidad"
+       data-en="Read privacy policy"
+       style="color: #4fc3f7; text-decoration: underline;">
+    </a>
+  </div>
+  <div>
+    <button id="accept-cookies" data-es="Aceptar" data-en="Accept"></button>
+    <button id="reject-cookies" data-es="Rechazar" data-en="Reject"></button>
+  </div>
+</div>
+
+<div id="reject-message"
+     data-es="Has rechazado las cookies. Algunas funcionalidades pueden estar limitadas."
+     data-en="You have rejected cookies. Some features may be limited.">
+</div>
+
+
     <div id="overlay-menu"></div>
 
     <header>
@@ -74,10 +198,6 @@ session_start();
             <div class="menu-tips">
                 <div class="logo-ods"> 
                     <img src="imagenWeb/img9.png" alt="">
-                </div>
-                <!-- Botón de idioma -->
-                <div class="language-toggle" onclick="toggleLanguage()">
-                    <img id="flag-icon" src="IMG/esp.png" alt="Idioma" />
                 </div>
 
                 <h1>
@@ -95,6 +215,10 @@ session_start();
                 <a href="index.php"><i class="fas fa-home"></i></a>
                 <span class="tooltiptext" data-es="Inicio" data-en="Home">Inicio</span>
             </li>
+                  <li class="tooltip">
+    <a href="/inicioSesion.php"><i class="fas fa-file-alt"></i></a>
+    <span class="tooltiptext" data-es="Post" data-en="Posts">Post</span>
+</li>
             <li class="tooltip">
                 <a href="/inicioSesion.php"><i class="fab fa-youtube"></i></a>
                 <span class="tooltiptext" data-es="Tutoriales" data-en="Tutorials">Tutoriales</span>
@@ -107,20 +231,33 @@ session_start();
                 <a href="/inicioSesion.php"><i class="fas fa-sign-out-alt"></i></a>
                 <span class="tooltiptext" data-es="Inicio Sesión" data-en="Sign In">Inicio Sesión</span>
             </li>
+                            <!-- Botón de idioma -->
+                <div class="language-toggle" onclick="toggleLanguage()">
+                    <img id="flag-icon" src="IMG/esp.png" alt="Idioma" />
+                </div>
         </ul>
     </nav>
 </div>
+ <li class="tooltip">
+    <div id="search-icon" style="cursor: pointer;">
+        <i class="fas fa-search"></i>
+    </div>
 
+    <form id="searchForm" action="buscar.php" method="GET" style="display: none; position: absolute; top: 40px; right: 0; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 1000;">
+        <input type="text" name="q" 
+            placeholder="Buscar..." 
+            data-placeholder-es="Buscar..." 
+            data-placeholder-en="Search..."
+            required 
+            style="padding: 5px;">
+        <button type="submit" style="padding: 5px;"><i class="fas fa-search"></i></button>
+    </form>
 
-                <form id="searchForm" class="search-form" action="buscar.php" method="GET" style="margin-left: 20px; display: flex;">
-                    <input type="text" name="q" 
-                        placeholder="Buscar..." 
-                        data-placeholder-es="Buscar..." 
-                        data-placeholder-en="Search..."
-                        required 
-                        style="padding: 5px;">
-                    <button type="submit" style="padding: 5px;"><i class="fas fa-search"></i></button>
-                </form>
+    <span class="tooltiptext" data-es="Buscar" data-en="Search">Buscar</span>
+</li>
+
+</li>
+
 </header>
 
     <div class="container-all" id="move-content">
@@ -373,9 +510,58 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
 </script>
-    
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const acceptBtn = document.getElementById("accept-cookies");
+    const rejectBtn = document.getElementById("reject-cookies");
+    const banner = document.getElementById("cookie-banner");
+    const rejectMessage = document.getElementById("reject-message");
+
+    // Ocultar el mensaje de rechazo al inicio
+    rejectMessage.style.display = "none";
+
+    acceptBtn.addEventListener("click", function () {
+        localStorage.setItem("cookiesAccepted", "true");
+        banner.style.display = "none";
+    });
+
+    rejectBtn.addEventListener("click", function () {
+        localStorage.setItem("cookiesAccepted", "false");
+        banner.style.display = "none";
+        rejectMessage.style.display = "block";
+        setTimeout(() => {
+            rejectMessage.style.display = "none";
+        }, 5000); // Ocultar el mensaje tras 5 segundos
+    });
+
+    // Comprobar si ya se aceptaron o rechazaron cookies
+    const cookiesStatus = localStorage.getItem("cookiesAccepted");
+    if (cookiesStatus === "true" || cookiesStatus === "false") {
+        banner.style.display = "none";
+    }
+});
+</script>
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchIcon = document.getElementById("search-icon");
+    const searchForm = document.getElementById("searchForm");
+
+    searchIcon.addEventListener("click", function (e) {
+        e.stopPropagation();
+        searchForm.style.display = searchForm.style.display === "none" ? "block" : "none";
+    });
+
+    // Ocultar formulario si se hace clic fuera
+    document.addEventListener("click", function () {
+        searchForm.style.display = "none";
+    });
+
+    // Evitar que se cierre al hacer clic dentro del formulario
+    searchForm.addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+});
+</script>
 </body>
 </html>
