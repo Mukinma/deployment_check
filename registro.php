@@ -32,6 +32,26 @@
             right: 10px;
             cursor: pointer;
         }
+           /* Título con texto negro y la imagen con contorno de la figura */
+        h1 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: black;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+       h1 img {
+            height: 4cm;
+            width: auto;
+            border: none;
+            border-radius: 0;
+            filter: drop-shadow(0 0 3px black) drop-shadow(0 0 3px black);
+            position: relative;
+            top: -10px;     /* Mueve la imagen hacia arriba */
+            right: -5px;   /* Mueve la imagen hacia la derecha */
+        }
     </style>
 </head>
 
@@ -48,7 +68,11 @@
   <img id="flag-icon" src="IMG/esp.png" alt="Idioma" style="width: 40px;">
 </div>
 
-<form action="registrar.php" method="post">
+<form action="registrar.php" method="post" enctype="multipart/form-data">
+  <h1>
+  <span data-es="Registro de Usuario" data-en="User Registration">Registro de Usuario</span>
+  <img src="imagenWeb/img9.png" alt="Logo" />
+</h1>
     <h1 data-es="Registro de Usuario" data-en="User Registration">Registro de Usuario</h1>
     <a href="/inicioSesion.php" class="btn-regresar" data-es="← Regresar al Login" data-en="← Back to Login">← Regresar al Login</a>
 
@@ -101,6 +125,12 @@
                name="confirmar_contraseña" required>
         <i class="fas fa-eye toggle-password" onclick="togglePassword('confirmar_contraseña', this)"></i>
       </div>
+    </p>
+
+     <p>
+        <span data-es="Foto de perfil (opcional)" data-en="Profile photo (optional)">Foto de perfil (opcional)</span>
+
+        <input type="file" name="fotoPerfil" accept="image/*">
     </p>
 
     <input type="submit" 

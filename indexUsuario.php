@@ -87,16 +87,25 @@ session_start();
 <div class="menu-contenido" id="menu-contenido">
     <nav style="display: flex; align-items: center;">
         <ul style="display: flex; margin: 0; padding: 0;">
-            <li class="tooltip">
-                <div class="perfil-usuario" style="margin-left: 20px; color: white;">
-                    <?php if (isset($_SESSION['usuario'])) { ?>
-                    <span style="color:rgb(0, 0, 0);">
-                    <i class="fas fa-user-circle"></i> 
-                    <span class="lang-bienvenido" data-es="Bienvenido" data-en="Welcome">Bienvenido</span>, 
-                    <?= htmlspecialchars($_SESSION['usuario']) ?>
-                    <?php } ?>
-                </div>
-            </li>
+<li class="tooltip">
+    <?php if (isset($_SESSION['usuario'])): ?>
+        <div class="perfil-usuario" style="margin-left: 20px; color: white; display: flex; align-items: center;">
+            <?php if (!empty($_SESSION['foto'])): ?>
+                <img src="imagenUsuarios/<?= htmlspecialchars($_SESSION['foto']) ?>" 
+                     alt="Foto de perfil" 
+                     style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
+            <?php else: ?>
+                <i class="fas fa-user-circle" 
+                   style="font-size: 35px; margin-right: 8px; color: black;"></i>
+            <?php endif; ?>
+            <span style="color: black;">
+                <span class="lang-bienvenido" data-es="Bienvenido" data-en="Welcome">Bienvenido</span>, 
+                <?= htmlspecialchars($_SESSION['usuario']) ?>
+            </span>
+        </div>
+    <?php endif; ?>
+</li>
+
              <li class="tooltip">
                 <a href="indexUsuario.php"><i class="fas fa-home"></i></a>
                 <span class="tooltiptext" data-es="Inicio" data-en="Home">Inicio</span>
@@ -228,6 +237,7 @@ echo '</div>';
     </div>
 
     <section id="ultimos-articulos">
+                 <h1>POSTS DESTACADOS</h1>
         <div class="articulo">
             
 <div class="articulo-item">
@@ -256,6 +266,7 @@ echo '</div>';
 
         <!-- Repite para post3.php a post6.php -->
         <div class="articulo-item">
+
             <img src="/post_Img/post1.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
             <h3 data-es="¿Cómo debe de ser la dieta para deportistas?" data-en="What should a diet for athletes be like?">
                 ¿Cómo debe de ser la dieta para deportistas?

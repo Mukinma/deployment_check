@@ -11,12 +11,66 @@ $_SESSION['lang'] = $lang;
     <title><?php echo $lang == 'es' ? 'Login' : 'Login'; ?></title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/cabecera.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Asegura que esté cargado -->
     <style>
         .language-toggle {
             position: absolute;
             top: 10px;
             right: 10px;
             cursor: pointer;
+        }
+        .password-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .password-wrapper input {
+            padding-right: 30px;
+        }
+        .password-wrapper .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+        }
+        .language-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .eye-button {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .password-wrapper {
+            position: relative;
+        }
+
+        /* Título con texto negro y la imagen con contorno de la figura */
+        h1 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: black;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+       h1 img {
+            height: 4cm;
+            width: auto;
+            border: none;
+            border-radius: 0;
+            filter: drop-shadow(0 0 3px black) drop-shadow(0 0 3px black);
+            position: relative;
+            top: -10px;     /* Mueve la imagen hacia arriba */
+            right: -5px;   /* Mueve la imagen hacia la derecha */
         }
     </style>
 </head>
@@ -38,8 +92,10 @@ $_SESSION['lang'] = $lang;
             }
         }
         ?>
-
-        <h1><?php echo $lang == 'es' ? 'Sistema de Login' : 'Login System'; ?></h1>
+     <h1>
+            <?php echo $lang == 'es' ? 'Sistema de Login' : 'Login System'; ?>
+            <img src="imagenWeb/img9.png" alt="Icono Login" />
+        </h1>
         <a href="index.php?lang=<?php echo $lang; ?>" class="btn-regresar"><?php echo $lang == 'es' ? '← Regresar' : '← Back'; ?></a>
 
         <p>
@@ -51,14 +107,20 @@ $_SESSION['lang'] = $lang;
 
         <p>
             <span><?php echo $lang == 'es' ? 'Contraseña' : 'Password'; ?></span><br>
-            <input type="password" id="contraseña" 
-                   placeholder="<?php echo $lang == 'es' ? 'Ingrese su contraseña' : 'Enter your password'; ?>" 
-                   name="contraseña" required>
-            <label for="ver_contraseña"><?php echo $lang == 'es' ? 'Mostrar contraseña' : 'Show password'; ?></label>
-            <input type="checkbox" id="ver_contraseña">
+            <div class="password-wrapper">
+                <input type="password" id="contraseña" 
+                       placeholder="<?php echo $lang == 'es' ? 'Ingrese su contraseña' : 'Enter your password'; ?>" 
+                       name="contraseña" required>
+                <i id="toggle-password" class="fas fa-eye toggle-password"></i>
+            </div>
         </p>
 
         <input type="submit" value="<?php echo $lang == 'es' ? 'Ingresar' : 'Login'; ?>">
+        <p style="text-align: center; margin-top: 10px;">
+            <a href="recuperarPassword.php?lang=<?php echo $lang; ?>">
+                <?php echo $lang == 'es' ? '¿Olvidaste tu contraseña?' : 'Forgot your password?'; ?>
+            </a>
+        </p>
 
         <p style="text-align: center; margin-top: 20px;">
             <span><?php echo $lang == 'es' ? '¿No tienes una cuenta?' : 'Don\'t have an account?'; ?></span>
@@ -67,10 +129,18 @@ $_SESSION['lang'] = $lang;
     </form>
 
     <script>
-        // Mostrar/ocultar contraseña
-        document.getElementById('ver_contraseña').addEventListener('change', function () {
+        // Mostrar/ocultar contraseña con icono ojito
+        document.getElementById('toggle-password').addEventListener('click', function () {
             const passwordField = document.getElementById('contraseña');
-            passwordField.type = this.checked ? 'text' : 'password';
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
+            }
         });
 
         // Traducción dinámica

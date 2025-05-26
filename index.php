@@ -348,6 +348,7 @@ $mostrarBannerCookies = !isset($_SESSION['cookies_aceptadas']);
         </div>
 
         <section id="ultimos-articulos">
+                             <h1>POSTS DESTACADOS</h1>
   <div class="articulo">
     <div class="articulo-item">
       <img src="post_Img/post6.jpg" alt="Salud y bienestar">
