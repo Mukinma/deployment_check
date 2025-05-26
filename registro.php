@@ -73,7 +73,6 @@
   <span data-es="Registro de Usuario" data-en="User Registration">Registro de Usuario</span>
   <img src="imagenWeb/img9.png" alt="Logo" />
 </h1>
-    <h1 data-es="Registro de Usuario" data-en="User Registration">Registro de Usuario</h1>
     <a href="/inicioSesion.php" class="btn-regresar" data-es="← Regresar al Login" data-en="← Back to Login">← Regresar al Login</a>
 
     <p>
