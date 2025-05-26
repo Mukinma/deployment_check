@@ -90,8 +90,8 @@ session_start();
 <li class="tooltip">
     <?php if (isset($_SESSION['usuario'])): ?>
         <div class="perfil-usuario" style="margin-left: 20px; color: white; display: flex; align-items: center;">
-            <?php if (!empty($_SESSION['foto'])): ?>
-                <img src="imagenUsuarios/<?= htmlspecialchars($_SESSION['foto']) ?>" 
+            <?php if (!empty($_SESSION['foto_perfil'])): ?>
+                <img src="imagenUsuarios/<?= htmlspecialchars($_SESSION['foto_perfil']) ?>" 
                      alt="Foto de perfil" 
                      style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
             <?php else: ?>

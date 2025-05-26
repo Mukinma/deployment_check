@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Guardar el id del usuario en sesión
             $_SESSION['usuario_id'] = $fila['id'];  // <-- Aquí está la clave
             $_SESSION['usuario'] = $usuario;
-            $_SESSION['foto'] = $fila['foto'];
+            $_SESSION['foto_perfil'] = $fila['foto_perfil'];
 
             $_SESSION['id_cargo'] = $fila['id_cargo'];
             $_SESSION['tipo'] = ($fila['id_cargo'] == 1) ? 'admin' : 'usuario';
