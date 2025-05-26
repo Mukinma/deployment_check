@@ -301,7 +301,7 @@ footer {
 .post-slider .post {
     width: 100%; /* Mantiene el ancho total del contenedor */
     margin: 10px 0; /* Margen entre publicaciones */
-    background: linear-gradient(to bottom, whitesmoke 65%, #406837eb 80%);
+    background: #c9e1c2;
     border-radius: 5px;
     box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
 }
@@ -1381,7 +1381,7 @@ header:hover {
     width: 300px;
     flex-shrink: 0;
     border-radius: 20px;
-    background: linear-gradient(145deg, #f2f9e2, #86b817);
+    background: #fffffff0;
     box-shadow: 0 15px 45px rgba(76,175,80,0.25);
     overflow: hidden;
     animation: slideInRightFade 1.3s ease forwards;

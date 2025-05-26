@@ -132,6 +132,14 @@
         <input type="file" name="fotoPerfil" accept="image/*">
     </p>
 
+    <p style="margin-top: 20px;">
+      <input type="checkbox" id="terminos" name="terminos" required>
+      <label for="terminos">
+        <span data-es="Acepto los" data-en="I accept the"></span> 
+        <a href="terminos.html" target="_blank" data-es="Términos y Condiciones" data-en="Terms and Conditions">Términos y Condiciones</a>
+      </label>
+    </p>
+
     <input type="submit" 
            value="Registrarse" 
            data-es-value="Registrarse" 

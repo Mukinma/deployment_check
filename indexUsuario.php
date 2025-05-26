@@ -240,29 +240,6 @@ echo '</div>';
                  <h1>POSTS DESTACADOS</h1>
         <div class="articulo">
             
-<div class="articulo-item">
-            <img src="post_Img/post1.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
-            <h3 data-es="¿Cómo debe de ser la dieta para deportistas?" data-en="What should a diet for athletes be like?">
-                ¿Cómo debe de ser la dieta para deportistas?
-            </h3>
-            <p data-es="La dieta para deportistas de alto rendimiento..." data-en="The diet for high-performance athletes...">
-                La dieta para deportistas de alto rendimiento...
-            </p>
-            <span>24/05/2025</span>
-            <a href="/post-Bloguero/post1.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
-        </div>
-
-        <div class="articulo-item">
-            <img src="post_Img/post2.jpg" alt="Salud y bienestar" data-es="Salud y bienestar" data-en="Health and Wellness">
-            <h3 data-es="Dieta antiinflamatoria" data-en="Anti-inflammatory Diet">
-                Dieta antiinflamatoria
-            </h3>
-            <p data-es="Elegir una dieta antiinflamatoria es clave..." data-en="Choosing an anti-inflammatory diet is key...">
-                Elegir una dieta antiinflamatoria es clave...
-            </p>
-            <span>24/05/2025</span>
-            <a href="/post-Bloguero/post2.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
-        </div>
 
         <!-- Repite para post3.php a post6.php -->
         <div class="articulo-item">
@@ -289,20 +266,35 @@ echo '</div>';
             <span>24/05/2025</span>
             <a href="/post-Bloguero/post2.php" class="lang-leer-mas" data-es="Leer más" data-en="Read more">Leer más</a>
         </div>
-            <div class="articulo-item">
-                <img src="post_Img/post4.jpg" alt="Salud y bienestar">
-                <h3 data-es="Smoothie de Frutas y Avena" data-en="Fruit and Oat Smoothie"></h3>
-                <p data-es="Este smoothie es una excelente manera de comenzar el…" data-en="This smoothie is an excellent way to start your…"></p>
-                <span>24/05/2025</span>
-                <a href="post-Bloguero/post4.php" data-es="Leer más" data-en="Read more"></a>
-            </div>
-            <div class="articulo-item">
-                <img src="post_Img/post5.png" alt="Salud y bienestar">
-                <h3 data-es="Ensalada con naranja, queso y pistachos" data-en="Salad with orange, cheese and pistachios"></h3>
-                <p data-es="Esta ensalada con naranja, queso de cabra y pistachos, aportan…" data-en="This salad with orange, goat cheese, and pistachios provides…"></p>
-                <span>24/05/2025</span>
-                <a href="post-Bloguero/post5.php" data-es="Leer más" data-en="Read more"></a>
-            </div>
+
+        <div class="articulo-item">
+            <img src="post_Img/post4.jpg" alt="Salud y bienestar">
+            <h3 data-es="Smoothie de Frutas y Avena" data-en="Fruit and Oat Smoothie"></h3>
+            <p data-es="Este smoothie es una excelente manera de comenzar el…" data-en="This smoothie is an excellent way to start your…"></p>
+            <span>24/05/2025</span>
+            <a href="post-Bloguero/post4.php" data-es="Leer más" data-en="Read more"></a>
+        </div>
+        <div class="articulo-item">
+            <img src="post_Img/post5.png" alt="Salud y bienestar">
+            <h3 data-es="Ensalada con naranja, queso y pistachos" data-en="Salad with orange, cheese and pistachios"></h3>
+            <p data-es="Esta ensalada con naranja, queso de cabra y pistachos, aportan…" data-en="This salad with orange, goat cheese, and pistachios provides…"></p>
+            <span>24/05/2025</span>
+            <a href="post-Bloguero/post5.php" data-es="Leer más" data-en="Read more"></a>
+        </div>
+        <div class="articulo-item">
+            <img src="post_Img/post6.jpg" alt="Salud y bienestar">
+            <h3 data-es="Galletas de avena y plátano" data-en="Oatmeal and Banana Cookies"></h3>
+            <p data-es="Estas son unas galletas de avena muy saludables y fáciles, ideales…" data-en="These are very healthy and easy oatmeal cookies, perfect…"></p>
+            <span>24/05/2025</span>
+            <a href="inicioSesion.php" data-es="Leer más" data-en="Read more"></a>
+        </div>
+        <div class="articulo-item">
+      <img src="post_Img/post3.jpg" alt="Salud y bienestar">
+      <h3 data-es="Galletas de calabaza para el desayuno" data-en="Pumpkin cookies for breakfast"></h3>
+      <p data-es="Estas galletas de calabaza se han vuelto una de mis recetas favoritas. Te prometo que te van a encantar…" data-en="These pumpkin cookies have become one of my favorite recipes. I promise you'll love them…"></p>
+      <span>24/05/2025</span>
+      <a href="inicioSesion.php" data-es="Leer más" data-en="Read more"></a>
+    </div>
         </div>
     </section>
 

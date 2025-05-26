@@ -146,6 +146,7 @@ body {
     position: relative;
     overflow: hidden;
     animation: scaleIn 0.8s ease forwards;
+    margin-top: 60px;
 }
 
 /* Entrada con escala */
@@ -726,7 +727,7 @@ article .contenido button:hover {
     display: inline-block;
     padding: 8px 15px;
     margin: 0 15px 15px;
-    background: #8f918f;
+    background: #edebeb;
     color: white;
     border-radius: 4px;
     text-decoration: none;
@@ -734,7 +735,9 @@ article .contenido button:hover {
 }
 
 .articulo-item a:hover {
-    background: #91a2e7;
+    background: #e1ffdbf7;
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 /* ====================== */
