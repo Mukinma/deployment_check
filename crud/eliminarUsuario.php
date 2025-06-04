@@ -8,7 +8,7 @@ $sql = "DELETE FROM usuarios WHERE id='$id'";
 $query = mysqli_query($con, $sql);
 
 if ($query) {
-    header("Location: listaUsuarios.php");
+    header("Location: /crud/listaUsuarios.php?message=Usuario eliminado correctamente");
 } else {
     echo "Error al eliminar usuario.";
 }
