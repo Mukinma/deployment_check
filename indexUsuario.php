@@ -286,14 +286,14 @@ echo '</div>';
             <h3 data-es="Galletas de avena y plátano" data-en="Oatmeal and Banana Cookies"></h3>
             <p data-es="Estas son unas galletas de avena muy saludables y fáciles, ideales…" data-en="These are very healthy and easy oatmeal cookies, perfect…"></p>
             <span>24/05/2025</span>
-            <a href="inicioSesion.php" data-es="Leer más" data-en="Read more"></a>
+            <a href="post-Bloguero/post6.php" data-es="Leer más" data-en="Read more"></a>
         </div>
         <div class="articulo-item">
       <img src="post_Img/post3.jpg" alt="Salud y bienestar">
       <h3 data-es="Galletas de calabaza para el desayuno" data-en="Pumpkin cookies for breakfast"></h3>
       <p data-es="Estas galletas de calabaza se han vuelto una de mis recetas favoritas. Te prometo que te van a encantar…" data-en="These pumpkin cookies have become one of my favorite recipes. I promise you'll love them…"></p>
       <span>24/05/2025</span>
-      <a href="inicioSesion.php" data-es="Leer más" data-en="Read more"></a>
+      <a href="post-Bloguero/post3.php" data-es="Leer más" data-en="Read more"></a>
     </div>
         </div>
     </section>

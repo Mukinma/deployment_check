@@ -93,7 +93,7 @@ $_SESSION['lang'] = $lang;
         }
         ?>
      <h1>
-            <?php echo $lang == 'es' ? 'Sistema de Login' : 'Login System'; ?>
+            <?php echo $lang == 'es' ? 'Login' : 'Login'; ?>
             <img src="imagenWeb/img9.png" alt="Icono Login" />
         </h1>
         <a href="index.php?lang=<?php echo $lang; ?>" class="btn-regresar"><?php echo $lang == 'es' ? '← Regresar' : '← Back'; ?></a>
